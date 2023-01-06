@@ -1,0 +1,225 @@
+* {
+    font-family: Roboto;
+}
+
+*:active, *:focus {
+    outline: none!important;
+}
+
+html, body {
+    height: 99%;
+}
+
+body {
+    display: grid;
+    place-items: center;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.deck-a, .deck-b {
+    border: 5px solid rgb(125, 181, 255);
+    border-radius: 8px;
+    height: 500px;
+    width: 450px;
+    padding: 10px;
+    background-color: #242424;
+}
+
+.deck-header {
+    display: grid;
+    grid-template-columns: 70px 1fr 70px;
+    margin-bottom: 10px;
+}
+
+.deck-header > .hed-ico, .deck-header > .sec-name, .amt > button {
+    border: none;
+    padding: 10px 12px;
+    text-transform: uppercase;
+}
+
+.deck-header > .hed-ico {
+    background-color: #fff;
+    color: #2374e1;
+    font-size: 16px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.deck-header > .sec-name {
+    background-color: #2374e1;
+    color: #fff;
+    font-size: 15px;
+}
+
+.mg-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.manage {
+    border: 4px solid rgb(125, 181, 255);
+    border-radius: 8px;
+    margin: 0px 12px;
+    padding: 2px 5px 5px 5px;
+    background-color: #242424;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+    width: fit-content;
+}
+
+.mv-ico-1 {
+    color: #fff;
+    background-color: #2374e1;
+    padding: 4px 28px;
+    font-size: 22px;
+    border: 3px solid rgb(125, 181, 255);
+    border-radius: 8px;
+    text-shadow: 0px 0px 8px rgb(0, 0, 0, 0.5);
+    transition: 0.2s ease;
+}
+
+
+.mv-ico-1:hover {
+    color: #fff;
+    background-color: #1261c7;
+}
+
+.mv-ico-1:active {
+    color: #1261c7;
+    background-color: #fff;
+}
+
+.move-ab {
+    margin-top: 13px;
+    display: grid;
+    place-items: center;
+}
+
+.hed-dm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.hed-amt-1, .hed-amt-2  {
+    border: none;
+    background-color: #fff;
+    color: #2374e1;
+    font-size: 16px;
+}
+
+.hed-amt-2 {
+    border-radius: 0px 5px 5px 0px;
+    font-weight: 500;
+    padding: 1px 9px 1px 0px;
+}
+
+.amt {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    width: 100%;
+}
+
+.amt > button {
+    border: none;
+    font-size: 15px;
+    padding: 8px 11px;
+}
+
+.amt > .amt-ico-1 {
+    background-color: #fff;
+    color: #2374e1;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.amt >.amt-ico-2 {
+    background-color: #2374e1;
+    color: #fff;
+    border-radius: 0px 4px 4px 0px;
+}
+
+.amt-input {
+    background: transparent;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    text-align: center;
+    padding: 9px;
+    width: 100px;
+    border-bottom: 2px solid rgba(24, 144, 255, 30%);
+    transition: border-bottom 0.3s ease-in-out;
+}
+
+.amt-input:focus{
+    border-bottom: 2px solid #1890ff;
+}
+
+.deck-a-items, .deck-b-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 100px;
+    gap: 8px;
+    height: 450px;
+    overflow-y: auto;
+}
+
+.item {
+    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.4);
+    display: grid;
+    grid-template-rows: auto;
+}
+
+.selected > .item-icon{
+    background-color: rgb(255, 255, 255, 25%);
+}
+
+.it-nfo {
+    display: grid;
+    grid-template-columns: 1fr 30px;
+}
+
+.it-nfo > button {
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    padding: 2px;
+}
+
+.it-name, .cunt {
+    text-shadow: 0px 0px 10px rgb(0, 0, 0, 0.5);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.cunt {
+    border-radius: 0px 0px 5px 0px;
+    background-color: #238f4c;
+    font-weight: 500;
+}
+
+.it-name {
+    border-radius: 0px 0px 0px 5px;
+    background-color: #2374e1;
+}
+
+.item-icon {
+    border: none;
+    font-size: 40px;
+    padding: 10px;
+    border-radius: 5px 5px 0px 0px;
+    background-color: rgb(255, 255, 255, 10%);
+    color: #fff;
+    text-shadow: 0px 0px 15px rgb(0, 0, 0, 0.8);
+    transition: 0.1s ease-in-out;
+}
