@@ -105,24 +105,35 @@ const getDuplicateItems = (deckname) => {
     return reData
 }
 
+const sortDeck = (prime, dup) => {
+    for (let i = 0; i < dup.length; i++) {
+        let curVal = prime.children[1].children[1].innerText
+        let addition = dup[i].children[1].children[1].innerText
+        prime.children[1].children[1].innerText = parseInt(curVal) + parseInt(addition)
+        dup[i].remove()
+    }
+}
+
 const analyzeDeck = (deckid) => {
     let deckitems = getDuplicateItems(deckid)
     for (let key in deckitems) {
         if (deckitems.hasOwnProperty(key)) {
             let primeItem = deckitems[key][0]
             let childItems = deckitems[key][1]
+            sortDeck(primeItem, childItems)
         }
     }
-    /* make a function to sort deck  */
     return 1
 }
 
 const transferItem = (item, parentDeck) => {
     if (parentDeck == 'deck-a-items' && item) {
         getQuerry('.deck-b-items').appendChild(item)
+        analyzeDeck('b')
     } else if (parentDeck == 'deck-b-items' && item) {
         getQuerry('.deck-a-items').appendChild(item)
-    }
+        analyzeDeck('a')
+    } 
 }
 
 const fireTransfer = (parentDeck, item, count) => {
