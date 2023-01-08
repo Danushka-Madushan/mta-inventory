@@ -114,6 +114,29 @@ const sortDeck = (prime, dup) => {
     }
 }
 
+const updateDeckValue = (method, deck) => {
+    let d1nitems = getAllDeckItems('a'), val1 = 0
+    let d2nitems = getAllDeckItems('b'), val2 = 0
+
+    for (let i = 0; i < d1nitems.length; i++) {
+        let amount = getData(d1nitems[i])[2]
+        val1 += amount
+    }
+
+    for (let i = 0; i < d2nitems.length; i++) {
+        let amount = getData(d2nitems[i])[2]
+        val2 += amount
+    }
+
+    if (method == 'get') {
+        return (deck == 'a' ? val1 : val2)
+    }
+
+    getQuerry('.deck-a').children[0].children[2].children[1].innerText = val1
+    getQuerry('.deck-b').children[0].children[2].children[1].innerText = val2
+
+} 
+
 const analyzeDeck = (deckid) => {
     let deckitems = getDuplicateItems(deckid)
     for (let key in deckitems) {
@@ -123,6 +146,7 @@ const analyzeDeck = (deckid) => {
             sortDeck(primeItem, childItems)
         }
     }
+    updateDeckValue(0, false)
     return 1
 }
 
