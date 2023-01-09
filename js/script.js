@@ -1,4 +1,13 @@
 const regex = new RegExp('^[0-9]{1,2}$')
+const Icons = {
+    'Item' : 'fa-solid fa-box',
+    'Burger' : 'fa-solid fa-burger',
+    'Water' : 'fa-solid fa-droplet',
+    '.50 Ammo' : 'fa-solid fa-gun',
+    'Bandage' : 'fa-solid fa-bandage',
+    'Fuel Can' : 'fa-solid fa-gas-pump',
+}
+
 $('.mv-ico-2').hide();
 $('.mv-ico-1').hide();
 
@@ -45,6 +54,23 @@ const getSelectedItem = () =>{
         parent = item.parentNode.className
     }
     return (item && parent ? [item, parent] : false)
+}
+
+const createNewElement = (name, amount) => {
+    const item = document.createElement("div");
+    let icon = (Icons.hasOwnProperty(name) ? Icons[name] : Icons['Item'])
+    
+    item.className = 'item'
+    item.innerHTML = `
+    <button class="item-icon">
+        <i class="${icon}"></i>
+    </button>
+    <div class="it-nfo">
+        <button class="it-name">${name}</button>
+        <button class="cunt">${amount}</button>
+    </div>`;
+    
+    return (item ? item : false)
 }
 
 const copyElement = (icon, name, count) => {
@@ -147,6 +173,7 @@ const analyzeDeck = (deckid) => {
         }
     }
     updateDeckValue(0, false)
+    /* getAllDeckItems('a') use this to update mta  */
     return 1
 }
 
@@ -158,6 +185,17 @@ const transferItem = (item, parentDeck) => {
         getQuerry('.deck-a-items').appendChild(item)
         analyzeDeck('a')
     } 
+}
+
+const addItemsToDeck = (items, deck) => {
+    if (Object.keys(items).length > 0) {
+        for (let i in items) {
+            let newItem = createNewElement(i, items[i])
+            if (newItem) {
+                transferItem(newItem, (deck == 'a' ? 'deck-b-items' : 'deck-a-items'))
+            }
+        }
+    }
 }
 
 const fireTransfer = (parentDeck, item, count) => {
