@@ -1,4 +1,4 @@
-const regex = new RegExp('^[0-9]{1,2}$')
+const regex = new RegExp('^[0-9]$')
 const Icons = {
     'Item' : 'fa-solid fa-box',
     'Burger' : 'fa-solid fa-burger',
@@ -17,7 +17,7 @@ const getQuerry = (querry) => {
 
 const checkInput = (key) => {
     let count = getQuerry('.amt-input').value
-    if (count.length <= 1) {
+    if (count.length <= 2) {
         let k = parseInt(key)
         if (regex.test(k)) {
             return true
@@ -69,7 +69,7 @@ const createNewElement = (name, amount) => {
         <button class="it-name">${name}</button>
         <button class="cunt">${amount}</button>
     </div>`;
-    
+
     return (item ? item : false)
 }
 
