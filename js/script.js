@@ -1,12 +1,4 @@
 const regex = new RegExp('^[0-9]$')
-const Icons = {
-    'Item' : 'fa-solid fa-box',
-    'Burger' : 'fa-solid fa-burger',
-    'Water' : 'fa-solid fa-droplet',
-    '.50 Ammo' : 'fa-solid fa-gun',
-    'Bandage' : 'fa-solid fa-bandage',
-    'Fuel Can' : 'fa-solid fa-gas-pump',
-}
 
 $('.mv-ico-2').hide();
 $('.mv-ico-1').hide();
@@ -155,11 +147,11 @@ const updateDeckValue = (method, deck) => {
     }
 
     if (method == 'get') {
-        return (deck == 'a' ? val1 : val2)
+        return (deck == 'a' ? (val1/1000).toFixed(2) : (val2/1000).toFixed(2))
     }
 
-    getQuerry('.deck-a').children[0].children[2].children[1].innerText = val1
-    getQuerry('.deck-b').children[0].children[2].children[1].innerText = val2
+    getQuerry('.deck-a').children[0].children[2].children[1].innerText = (val1/1000).toFixed(2)
+    getQuerry('.deck-b').children[0].children[2].children[1].innerText = (val2/1000).toFixed(2)
 
 } 
 
@@ -173,18 +165,25 @@ const analyzeDeck = (deckid) => {
         }
     }
     updateDeckValue(0, false)
-    /* getAllDeckItems('a') use this to update mta  */
+    /* getAllDeckItems(deckid) use this to update mta  */
+    console.log(` ${(deckid == 'a' ? 'Inventory': 'Stash')} ${deckid} has Updated`)
     return 1
 }
 
 const transferItem = (item, parentDeck) => {
-    if (parentDeck == 'deck-a-items' && item) {
-        getQuerry('.deck-b-items').appendChild(item)
-        analyzeDeck('b')
-    } else if (parentDeck == 'deck-b-items' && item) {
-        getQuerry('.deck-a-items').appendChild(item)
-        analyzeDeck('a')
-    } 
+    let curAmount = updateDeckValue('get', (parentDeck == 'deck-a-items' ? 'b' : 'a'))
+    let curtotal = parseFloat(curAmount) + parseFloat((getData(item)[2]/1000).toFixed(2))
+    if (curtotal <= maxAmount[(parentDeck == 'deck-a-items' ? 'b' : 'a')]) {
+        if (parentDeck == 'deck-a-items' && item) {
+            getQuerry('.deck-b-items').appendChild(item)
+            analyzeDeck('b')
+        } else if (parentDeck == 'deck-b-items' && item) {
+            getQuerry('.deck-a-items').appendChild(item)
+            analyzeDeck('a')
+        }
+    } else {
+        console.log('Max Amount reached')
+    }
 }
 
 const addItemsToDeck = (items, deck) => {
