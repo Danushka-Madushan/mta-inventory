@@ -89,6 +89,22 @@ const getData = (item) => {
     return false
 }
 
+const parseJSON = (method, Jobject) => {
+    if (method == 'decode' && Jobject) {
+        let deObject = {}, parsed = JSON.parse(Jobject)
+        for (const elm in parsed[0]) {
+            deObject[parsed[0][elm][0]] = parsed[0][elm][1]
+        }   
+        return deObject
+    } else if (method == 'encode' && Jobject) {
+        let enObject = [[]]
+        for (const each in Jobject) {
+            enObject[0].push([each, Jobject[each]])
+        }
+        return JSON.stringify(enObject)
+    }
+}
+
 const getAllDeckItems = (deckid) => {
     let deck = getQuerry(`.deck-${deckid}-items`)
     return (deck ? deck.querySelectorAll('.item') : []);
@@ -99,7 +115,7 @@ const getDuplicateItems = (deckname) => {
 
     let items = getAllDeckItems(deckname)
     for (let i = 0; i < items.length; i++) {
-        let cname = items[i].children[0].children[0].className
+        let cname = items[i].children[1].children[0].innerText
         if (cname in ditems) {
             if (typeof(dups[cname]) != 'object') {
                 dups[cname] = []
@@ -177,7 +193,21 @@ const analyzeDeck = (deckid) => {
     }
     updateDeckValue(0, false)
     /* getAllDeckItems(deckid) use this to update mta  */
-    console.log(` ${(deckid == 'a' ? 'Inventory': 'Stash')} ${deckid} has Updated`)
+    let de = ['a', 'b']
+    for (const e in de) {
+        let items = {}
+        let g = getAllDeckItems(de[e])
+        for (let i = 0; i < g.length; i++) {
+            let v = getData(g[i])
+            items[v[1]] = v[2]
+        }
+        if (de[e] == 'a') {
+            console.log(parseJSON('encode', items), 'User Inventory')
+        } else if (de[e] == 'b') {
+            console.log(parseJSON('encode', items), 'User Stash')
+        }
+        
+    }
     return 1
 }
 
@@ -197,7 +227,8 @@ const transferItem = (item, parentDeck) => {
     }
 }
 
-const addItemsToDeck = (items, deck) => {
+const addItemsToDeck = (data, deck) => {
+    let items = parseJSON('decode', data)
     if (Object.keys(items).length > 0) {
         for (let i in items) {
             let newItem = createNewElement(i, items[i])
