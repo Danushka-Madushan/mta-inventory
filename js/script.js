@@ -99,7 +99,7 @@ const parseJSON = (method, Jobject) => {
     } else if (method == 'encode' && Jobject) {
         let enObject = [[]]
         for (const each in Jobject) {
-            enObject[0].push([each, Jobject[each]])
+            enObject[0].push([getName(false, each), Jobject[each]])
         }
         return JSON.stringify(enObject)
     }
@@ -174,11 +174,11 @@ const updateDeckValue = (method, deck) => {
     }
 
     if (method == 'get') {
-        return (deck == 'a' ? (val1/1000).toFixed(2) : (val2/1000).toFixed(2))
+        return (deck == 'a' ? (val1/100).toFixed(2) : (val2/100).toFixed(2))
     }
 
-    getQuerry('.deck-a').children[0].children[2].children[1].innerText = (val1/1000).toFixed(2)
-    getQuerry('.deck-b').children[0].children[2].children[1].innerText = (val2/1000).toFixed(2)
+    getQuerry('.deck-a').children[0].children[2].children[1].innerText = (val1/100).toFixed(2)
+    getQuerry('.deck-b').children[0].children[2].children[1].innerText = (val2/100).toFixed(2)
 
 } 
 
@@ -213,7 +213,7 @@ const analyzeDeck = (deckid) => {
 
 const transferItem = (item, parentDeck) => {
     let curAmount = updateDeckValue('get', (parentDeck == 'deck-a-items' ? 'b' : 'a'))
-    let curtotal = parseFloat(curAmount) + parseFloat((getData(item)[2]/1000).toFixed(2))
+    let curtotal = parseFloat(curAmount) + parseFloat((getData(item)[2]/100).toFixed(2))
     if (curtotal <= maxAmount[(parentDeck == 'deck-a-items' ? 'b' : 'a')]) {
         if (parentDeck == 'deck-a-items' && item) {
             getQuerry('.deck-b-items').appendChild(item)
@@ -231,7 +231,7 @@ const addItemsToDeck = (data, deck) => {
     let items = parseJSON('decode', data)
     if (Object.keys(items).length > 0) {
         for (let i in items) {
-            let newItem = createNewElement(i, items[i])
+            let newItem = createNewElement(getName(true, i), items[i])
             if (newItem) {
                 transferItem(newItem, (deck == 'a' ? 'deck-b-items' : 'deck-a-items'))
             }
