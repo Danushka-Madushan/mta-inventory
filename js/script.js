@@ -123,6 +123,17 @@ const getDuplicateItems = (deckname) => {
     return reData
 }
 
+const emptyDecks = () => {
+    let decks = ['a', 'b']
+    for (const deck in decks) {
+        let items = getAllDeckItems(decks[deck])
+        for (const item of items) {
+            item.remove()
+        }
+    }
+    return 1
+}
+
 const sortDeck = (prime, dup) => {
     for (let i = 0; i < dup.length; i++) {
         let curVal = prime.children[1].children[1].innerText
