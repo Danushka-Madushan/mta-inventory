@@ -274,6 +274,16 @@ getQuerry('#right-mv').onclick = () => {eventTransfer()}
 
 getQuerry('#left-mv').onclick = () => {eventTransfer()}
 
+getQuerry('.btn-close').onclick = () => {
+    $('.container').fadeOut('slow', function(){
+        console.log('Close clicked!')
+    });
+}
+
+const showDeck = () => {
+    $('.container').fadeIn()
+}
+
 /* ---- */
 
 $('.container').on("click", ".item", function() {

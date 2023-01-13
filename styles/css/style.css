@@ -4,6 +4,7 @@
     --fb-dark: #1261c7;
     --fb-ligt: #7db5ff;
     --fb-cunt: #238f4c;
+    --fb-tred: #BC243C;
 }
 
 * {
@@ -40,7 +41,7 @@ body {
     height: 500px;
     width: 450px;
     padding: 10px;
-    background-color: #242424;
+    background-color: rgba(36, 36, 36, 90%);
 }
 
 .deck-header {
@@ -230,4 +231,32 @@ body {
     color: var(--p-white);
     text-shadow: 0px 0px 15px rgb(0, 0, 0, 0.8);
     transition: 0.1s ease-in-out;
+}
+
+.btn-close {
+    color: var(--p-white);
+    padding: 8px 10px;
+    background-color: var(--fb-tred);
+    border-radius: 5px 12px 5px 12px;
+    border: none;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transition: 0.3s ease-in-out;
+    border: 2px solid var(--fb-tred);
+}
+
+.btn-close:hover {
+    background-color: #bc243cd9;
+    border-radius: 12px 5px 12px 5px;
+}
+
+.btn-close:active {
+    color: var(--fb-tred);
+    background-color: var(--p-white);
+}
+
+.close-btn {
+    margin-bottom: 20px;
 }
