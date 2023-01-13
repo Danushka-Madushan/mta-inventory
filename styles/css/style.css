@@ -1,3 +1,11 @@
+:root {
+    --p-white: #ffffff;
+    --fb-blue: #2374e1;
+    --fb-dark: #1261c7;
+    --fb-ligt: #7db5ff;
+    --fb-cunt: #238f4c;
+}
+
 * {
     font-family: Roboto;
 }
@@ -27,7 +35,7 @@ body {
 }
 
 .deck-a, .deck-b {
-    border: 5px solid rgb(125, 181, 255);
+    border: 5px solid var(--fb-ligt);
     border-radius: 8px;
     height: 500px;
     width: 450px;
@@ -48,15 +56,15 @@ body {
 }
 
 .deck-header > .hed-ico {
-    background-color: #fff;
-    color: #2374e1;
+    background-color: var(--p-white);
+    color: var(--fb-blue);
     font-size: 16px;
     border-radius: 5px 0px 0px 5px;
 }
 
 .deck-header > .sec-name {
-    background-color: #2374e1;
-    color: #fff;
+    background-color: var(--fb-blue);
+    color: var(--p-white);
     font-size: 15px;
 }
 
@@ -67,7 +75,7 @@ body {
 }
 
 .manage {
-    border: 4px solid rgb(125, 181, 255);
+    border: 4px solid var(--fb-ligt);
     border-radius: 8px;
     margin: 0px 12px;
     padding: 2px 5px 5px 5px;
@@ -79,11 +87,11 @@ body {
 }
 
 .mv-ico-1 {
-    color: #fff;
-    background-color: #2374e1;
+    color: var(--p-white);
+    background-color: var(--fb-blue);
     padding: 4px 28px;
     font-size: 22px;
-    border: 3px solid rgb(125, 181, 255);
+    border: 3px solid var(--fb-ligt);
     border-radius: 8px;
     text-shadow: 0px 0px 8px rgb(0, 0, 0, 0.5);
     transition: 0.2s ease;
@@ -91,13 +99,13 @@ body {
 
 
 .mv-ico-1:hover {
-    color: #fff;
-    background-color: #1261c7;
+    color: var(--p-white);
+    background-color: var(--fb-dark);
 }
 
 .mv-ico-1:active {
-    color: #1261c7;
-    background-color: #fff;
+    color: var(--fb-dark);
+    background-color: var(--p-white);
 }
 
 .move-ab {
@@ -113,8 +121,8 @@ body {
 
 .hed-amt-1, .hed-amt-2  {
     border: none;
-    background-color: #fff;
-    color: #2374e1;
+    background-color: var(--p-white);
+    color: var(--fb-blue);
     font-size: 16px;
 }
 
@@ -137,20 +145,20 @@ body {
 }
 
 .amt > .amt-ico-1 {
-    background-color: #fff;
-    color: #2374e1;
+    background-color: var(--p-white);
+    color: var(--fb-blue);
     border-radius: 4px 0px 0px 4px;
 }
 
 .amt >.amt-ico-2 {
-    background-color: #2374e1;
-    color: #fff;
+    background-color: var(--fb-blue);
+    color: var(--p-white);
     border-radius: 0px 4px 4px 0px;
 }
 
 .amt-input {
     background: transparent;
-    color: #fff;
+    color: var(--p-white);
     border: none;
     font-size: 20px;
     text-align: center;
@@ -190,7 +198,7 @@ body {
 
 .it-nfo > button {
     border: none;
-    color: #fff;
+    color: var(--p-white);
     font-size: 14px;
     padding: 2px;
 }
@@ -204,13 +212,13 @@ body {
 
 .cunt {
     border-radius: 0px 0px 5px 0px;
-    background-color: #238f4c;
+    background-color: var(--fb-cunt);
     font-weight: 500;
 }
 
 .it-name {
     border-radius: 0px 0px 0px 5px;
-    background-color: #2374e1;
+    background-color: var(--fb-blue);
 }
 
 .item-icon {
@@ -219,7 +227,7 @@ body {
     padding: 10px;
     border-radius: 5px 5px 0px 0px;
     background-color: rgb(255, 255, 255, 10%);
-    color: #fff;
+    color: var(--p-white);
     text-shadow: 0px 0px 15px rgb(0, 0, 0, 0.8);
     transition: 0.1s ease-in-out;
 }
