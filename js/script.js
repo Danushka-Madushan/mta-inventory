@@ -182,7 +182,7 @@ const updateDeckValue = (method, deck) => {
 
 } 
 
-const analyzeDeck = (deckid) => {
+const analyzeDeck = (deckid, monitor) => {
     let deckitems = getDuplicateItems(deckid)
     for (let key in deckitems) {
         if (deckitems.hasOwnProperty(key)) {
@@ -201,9 +201,9 @@ const analyzeDeck = (deckid) => {
             let v = getData(g[i])
             items[v[1]] = v[2]
         }
-        if (de[e] == 'a') {
+        if (de[e] == 'a' && monitor) {
             console.log(parseJSON('encode', items), 'User Inventory')
-        } else if (de[e] == 'b') {
+        } else if (de[e] == 'b' && monitor) {
             console.log(parseJSON('encode', items), 'User Stash')
         }
         
@@ -211,16 +211,16 @@ const analyzeDeck = (deckid) => {
     return 1
 }
 
-const transferItem = (item, parentDeck) => {
+const transferItem = (item, parentDeck, monitor) => {
     let curAmount = updateDeckValue('get', (parentDeck == 'deck-a-items' ? 'b' : 'a'))
     let curtotal = parseFloat(curAmount) + parseFloat((getData(item)[2]/100).toFixed(2))
     if (curtotal <= maxAmount[(parentDeck == 'deck-a-items' ? 'b' : 'a')]) {
         if (parentDeck == 'deck-a-items' && item) {
             getQuerry('.deck-b-items').appendChild(item)
-            analyzeDeck('b')
+            analyzeDeck('b', monitor)
         } else if (parentDeck == 'deck-b-items' && item) {
             getQuerry('.deck-a-items').appendChild(item)
-            analyzeDeck('a')
+            analyzeDeck('a', monitor)
         }
     } else {
         console.log('Max Amount reached')
@@ -233,7 +233,7 @@ const addItemsToDeck = (data, deck) => {
         for (let i in items) {
             let newItem = createNewElement(getName(true, i), items[i])
             if (newItem) {
-                transferItem(newItem, (deck == 'a' ? 'deck-b-items' : 'deck-a-items'))
+                transferItem(newItem, (deck == 'a' ? 'deck-b-items' : 'deck-a-items'), false)
             }
         }
     }
@@ -245,9 +245,9 @@ const fireTransfer = (parentDeck, item, count) => {
         if (count != 0 && itmData && itmData[2] != count) {
             let cpitm = copyElement(itmData[0], itmData[1], count)
             item.children[1].children[1].innerText = itmData[2] - count
-            transferItem(cpitm, parentDeck)
+            transferItem(cpitm, parentDeck, true)
         } else {
-            transferItem(item, parentDeck);
+            transferItem(item, parentDeck, true);
             (item ? item.classList.toggle("selected") : false);
         }
     } else {
