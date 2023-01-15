@@ -1,3 +1,7 @@
+const currentType = {
+    "type" : "",
+}
+
 const realName = {
     'pizza' : 'Pizza',
     'hamburguer' : 'Hamburger',
@@ -87,4 +91,12 @@ const getName = (method, item) => {
     } else {
         return getKeyByValue(realName, item)
     }
+}
+
+const getStorageType = () => {
+    return currentType.type
+}
+
+const setStorageType = (type) => {
+    currentType.type = type
 }
