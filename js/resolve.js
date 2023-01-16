@@ -2,6 +2,10 @@ const currentType = {
     "type" : "",
 }
 
+const currentGroup = {
+    "group" : "",
+}
+
 const realName = {
     'pizza' : 'Pizza',
     'hamburguer' : 'Hamburger',
@@ -78,6 +82,10 @@ const maxAmount = {
     'b' : 20,
 }
 
+const setMaxStorage = (storage) => {
+    maxAmount['b'] = storage
+}
+
 const getKeyByValue = (object, value) => {
     let n = Object.keys(object).find(
         key => object[key] === value
@@ -99,4 +107,12 @@ const getStorageType = () => {
 
 const setStorageType = (type) => {
     currentType.type = type
+}
+
+const getStorageGroup = () => {
+    return currentGroup.group
+}
+
+const setStorageGroup = (group) => {
+    currentGroup.group = group
 }
