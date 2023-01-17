@@ -280,6 +280,28 @@ getQuerry('.btn-close').onclick = () => {
     });
 }
 
+getQuerry('#ex-hid').onclick = (e) => {
+    let deck = getQuerry('.deck-a')
+    if (deck.offsetWidth > 450) {
+        $('.deck-a-items').fadeOut(400, function(){
+            deck.style.width = "70px"
+            e.target.innerText = 'Expand'
+            setTimeout(function(){
+                $('.deck-a-items').fadeIn();
+            }, 400);
+        });
+        
+    } else {
+        $('.deck-a-items').fadeOut(400, function(){
+            deck.style.width = "450px"
+            e.target.innerText = 'Hide'
+            setTimeout(function(){
+                $('.deck-a-items').fadeIn();
+            }, 400);
+        });
+    }
+}
+
 const showDeck = () => {
     $('.container').fadeIn()
 }

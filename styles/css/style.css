@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
 :root {
     --p-white: #ffffff;
     --fb-blue: #2374e1;
@@ -42,12 +44,14 @@ body {
     width: 450px;
     padding: 10px;
     background-color: rgba(36, 36, 36, 90%);
+    transition: 0.4s ease-in-out;
 }
 
 .deck-header {
     display: grid;
     grid-template-columns: 70px 1fr 70px;
     margin-bottom: 10px;
+    overflow-x: auto;
 }
 
 .deck-header > .hed-ico, .deck-header > .sec-name, .amt > button {
@@ -96,6 +100,37 @@ body {
     border-radius: 8px;
     text-shadow: 0px 0px 8px rgb(0, 0, 0, 0.5);
     transition: 0.2s ease;
+}
+
+.expose-hide {
+    margin-bottom: 20px;
+    display: none;
+}
+
+.hide {
+    color: var(--p-white);
+    background-color: var(--fb-blue);
+    font-size: 17px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 2px solid var(--fb-ligt);
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.4);
+}
+
+.hide:hover {
+    background-color: var(--fb-dark);
+}
+
+.hide:active {
+    color: var(--fb-blue);
+    background-color: var(--p-white);
+}
+
+@media screen and (max-width: 1150px) {
+    .expose-hide {
+      display: inline-block;
+    }
 }
 
 
